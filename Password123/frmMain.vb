@@ -137,4 +137,10 @@
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         frmSettings.ShowDialog()
     End Sub
+
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If e.CloseReason = CloseReason.UserClosing Then
+            Application.Exit()
+        End If
+    End Sub
 End Class

@@ -84,7 +84,7 @@ Partial Class frmLogin
         Me.Controls.Add(Me.btnOk)
         Me.Controls.Add(Me.txtKey)
         Me.Controls.Add(Me.Label1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmLogin"
