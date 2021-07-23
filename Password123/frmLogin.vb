@@ -4,7 +4,9 @@
     End Sub
 
     Private Sub frmLogin_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        Application.Exit()
+        If e.CloseReason = CloseReason.UserClosing Then
+            Application.Exit()
+        End If
     End Sub
 
     Private Sub btnOk_Click(sender As Object, e As EventArgs) Handles btnOk.Click
@@ -22,10 +24,12 @@
                 Dim strSample As String = GetSampleStringENC.Trim
                 If Not strSample = "" Then
                     Dim strValue As String = DecryptTripleDES(strSample, strPass)
-                    If strValue = GetSampleString() Then
+                    If Not strValue = GetSampleString() Then
                         MsgBox($"Failed to unlock:{vbCrLf}Either database is corrupt or enterd key is wrong!", MsgBoxStyle.Critical, "ENCRYPTION ERROR")
                     Else
-                        'Unlock database
+                        Key = strPass
+                        frmMain.Show()
+                        Dispose()
                     End If
                 End If
             Catch ex As Exception
