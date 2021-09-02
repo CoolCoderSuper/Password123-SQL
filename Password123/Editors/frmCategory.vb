@@ -12,7 +12,7 @@
         Me.intId = intId
         bEdit = True
         Text = "Edit Category"
-        Dim q As String = $"select * from categories where Id='{intId}'"
+        Dim q As String = "select * from categories where Id='" & intId & "'"
         conn.executequery(q)
         If conn.hasexception(True) Then
             Exit Sub
@@ -29,10 +29,10 @@
     Private Sub Save()
         conn.addparam("@name", txtName.Text)
         If bEdit Then
-            Dim q As String = $"update categories set Name=@name where Id='{intId}';"
+            Dim q As String = "update categories set Name=@name where Id='" & intId & "';"
             conn.executequery(q)
         Else
-            Dim q As String = $"insert into categories(Name) Values(@name);"
+            Dim q As String = "insert into categories(Name) Values(@name);"
             conn.executequery(q)
         End If
         conn.hasexception(True)

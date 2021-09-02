@@ -21,7 +21,7 @@
         bEdit = True
         Text = "Edit Entry"
         LoadCategories()
-        Dim qEntry As String = $"select * from entries where Id='{intId}';"
+        Dim qEntry As String = "select * from entries where Id='" & intId & "';"
         conn.executequery(qEntry)
         If conn.hasexception(True) Then
             Exit Sub
@@ -37,7 +37,7 @@
         chFavourite.Checked = dr("Favourite")
         txtNotes.Text = dr("Notes")
         cbxCategory.SelectedValue = dr("CategoryId")
-        Dim qURLs As String = $"select * from urls where EntryId='{intId}'"
+        Dim qURLs As String = "select * from urls where EntryId='" & intId & "'"
         conn.executequery(qURLs)
         For Each drURL As DataRow In conn.dbdt.Rows
             lvURLs.Items.Add(drURL("URL"))
@@ -54,7 +54,7 @@
         conn.addparam("@notes", txtNotes.Text)
         conn.addparam("@categoryid", cbxCategory.SelectedValue)
         If bEdit Then
-            Dim q1 As String = $"update entries set Name=@name,Username=@username,Password=@password,Favourite=@fav,Notes=@notes,CategoryId=@categoryid where Id='{intId}';"
+            Dim q1 As String = "update entries set Name=@name,Username=@username,Password=@password,Favourite=@fav,Notes=@notes,CategoryId=@categoryid where Id='" & intId & "';"
             conn.executequery(q1)
         Else
             Dim q1 As String = "insert into entries(Name,Username,Password,Favourite,Notes,CategoryId) Values(@name,@username,@password,@fav,@notes,@categoryid);"
@@ -63,15 +63,15 @@
         If conn.hasexception(True) Then
             Exit Sub
         End If
-        conn.executequery($"delete from urls where EntryId='{intId}';")
+        conn.executequery("delete from urls where EntryId='" & intId & "';")
         If conn.hasexception(True) Then
             Exit Sub
         End If
         Dim q As String = ""
         Dim c As Integer = 0
         For Each item As ListViewItem In lvURLs.Items
-            conn.addparam($"@url{c}", item.Text)
-            q &= $"insert into urls(Url,EntryId) Values(@url{c},'{intId}');"
+            conn.addparam("@url" & c, item.Text)
+            q &= "insert into urls(Url,EntryId) Values(@url" & c & ",'" & intId & "');"
             c += 1
         Next
         If Not q = "" Then

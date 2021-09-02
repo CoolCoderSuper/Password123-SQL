@@ -25,7 +25,7 @@
     Private Sub btnDeleteCategory_Click(sender As Object, e As EventArgs) Handles btnDeleteCategory.Click
         Try
             Dim intId As Integer = Integer.Parse(lstCategories.SelectedValue.ToString)
-            Dim q As String = $"delete from categories where Id='{intId}'"
+            Dim q As String = "delete from categories where Id='" & intId & "'"
             conn.executequery(q)
             conn.hasexception(True)
         Catch ex As Exception
@@ -69,7 +69,7 @@
     Private Sub btnDeleteEntry_Click(sender As Object, e As EventArgs) Handles btnDeleteEntry.Click
         Try
             Dim intId As Integer = Integer.Parse(dgvEntries.SelectedRows(0).Cells(0).Value.ToString)
-            Dim q As String = $"delete from entries where Id='{intId}';"
+            Dim q As String = "delete from entries where Id='" & intId & "';"
             conn.executequery(q)
             conn.hasexception(True)
         Catch ex As Exception
@@ -81,7 +81,7 @@
     Private Sub btnCopyUser_Click(sender As Object, e As EventArgs) Handles btnCopyUser.Click
         Try
             Dim intId As Integer = Integer.Parse(dgvEntries.SelectedRows(0).Cells(0).Value.ToString)
-            Dim q As String = $"select * from entries where Id='{intId}';"
+            Dim q As String = "select * from entries where Id='" & intId & "';"
             conn.executequery(q)
             If conn.dbdt.Rows.Count = 0 Then
                 MsgBox("Failed to get entry!", MsgBoxStyle.Critical, "DATABASE ERROR")
@@ -96,7 +96,7 @@
     Private Sub btnCopyPassword_Click(sender As Object, e As EventArgs) Handles btnCopyPassword.Click
         Try
             Dim intId As Integer = Integer.Parse(dgvEntries.SelectedRows(0).Cells(0).Value.ToString)
-            Dim q As String = $"select * from entries where Id='{intId}';"
+            Dim q As String = "select * from entries where Id='" & intId & "';"
             conn.executequery(q)
             If conn.dbdt.Rows.Count = 0 Then
                 MsgBox("Failed to get entry!", MsgBoxStyle.Critical, "DATABASE ERROR")
@@ -117,12 +117,12 @@
     End Sub
 
     Private Sub LoadEntries(intCategoryId As Integer, strSeacrh As String)
-        conn.addparam("@search", $"%{strSeacrh}%")
+        conn.addparam("@search", "%" & strSeacrh & "%")
         Dim q As String
         If intCategoryId = 0 Then
-            q = $"select * from entries where Name like @search;"
+            q = "select * from entries where Name like @search;"
         Else
-            q = $"select * from entries where CategoryId='{intCategoryId}' and Name like @search;"
+            q = "select * from entries where CategoryId='" & intCategoryId & "' and Name like @search;"
         End If
         conn.executequery(q)
         If conn.hasexception(True) Then
