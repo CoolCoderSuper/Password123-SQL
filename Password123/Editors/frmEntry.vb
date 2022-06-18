@@ -1,6 +1,6 @@
 ﻿Public Class frmEntry
-    Dim intId As Integer
-    Dim bEdit As Boolean = False
+    Private intId As Integer
+    Private bEdit As Boolean = False
 
     Public Sub ShowNew()
         Text = "New Entry"
@@ -8,7 +8,7 @@
         Dim q As String = "select Id from entries where Id=(select max(Id) from entries);"
         conn.executequery(q)
         Try
-            intId = Integer.Parse(conn.dbdt.Rows(0)("Id").ToString) + 1
+            intId = Integer.Parse(conn.dbdt.Rows(0)("Id").ToString()) + 1
         Catch ex As Exception
             intId = 1
         End Try
@@ -27,15 +27,15 @@
             Exit Sub
         End If
         If conn.dbdt.Rows.Count = 0 Then
-            MsgBox("Failed to get item.", MsgBoxStyle.Critical, "DATABASE ERROR")
+            MsgBox("Failed to get item.", MsgBoxStyle.Critical, "Database Error")
             Exit Sub
         End If
         Dim dr As DataRow = conn.dbdt.Rows(0)
-        txtName.Text = dr("Name")
-        txtUsername.Text = dr("Username")
+        txtName.Text = DecryptTripleDES(dr("Name"), Key)
+        txtUsername.Text = DecryptTripleDES(dr("Username"), Key)
         txtPassword.Text = DecryptTripleDES(dr("Password"), Key)
         chFavourite.Checked = dr("Favourite")
-        txtNotes.Text = dr("Notes")
+        txtNotes.Text = DecryptTripleDES(dr("Notes"), Key)
         cbxCategory.SelectedValue = dr("CategoryId")
         Dim qURLs As String = "select * from urls where EntryId='" & intId & "'"
         conn.executequery(qURLs)
@@ -47,11 +47,11 @@
     End Sub
 
     Private Sub Save()
-        conn.addparam("@name", txtName.Text)
-        conn.addparam("@username", txtUsername.Text)
+        conn.addparam("@name", EncryptTripleDES(txtName.Text, Key))
+        conn.addparam("@username", EncryptTripleDES(txtUsername.Text, Key))
         conn.addparam("@password", EncryptTripleDES(txtPassword.Text, Key))
         conn.addparam("@fav", chFavourite.Checked)
-        conn.addparam("@notes", txtNotes.Text)
+        conn.addparam("@notes", EncryptTripleDES(txtNotes.Text, Key))
         conn.addparam("@categoryid", cbxCategory.SelectedValue)
         If bEdit Then
             Dim q1 As String = "update entries set Name=@name,Username=@username,Password=@password,Favourite=@fav,Notes=@notes,CategoryId=@categoryid where Id='" & intId & "';"
@@ -67,14 +67,14 @@
         If conn.hasexception(True) Then
             Exit Sub
         End If
-        Dim q As String = ""
+        Dim q As String = String.Empty
         Dim c As Integer = 0
         For Each item As ListViewItem In lvURLs.Items
             conn.addparam("@url" & c, item.Text)
             q &= "insert into urls(Url,EntryId) Values(@url" & c & ",'" & intId & "');"
             c += 1
         Next
-        If Not q = "" Then
+        If Not q = String.Empty Then
             conn.executequery(q)
         End If
         If conn.hasexception(True) Then
@@ -85,6 +85,9 @@
     Private Sub LoadCategories()
         Dim q As String = "select * from categories"
         conn.executequery(q)
+        For i As Integer = 0 To conn.dbdt.Rows.Count - 1
+            conn.dbdt.Rows(i)("Name") = DecryptTripleDES(conn.dbdt.Rows(i)("Name"), Key)
+        Next
         conn.dbdt.Rows.Add(-1, "No Category")
         cbxCategory.DataSource = conn.dbdt
         cbxCategory.DisplayMember = "Name"
@@ -97,7 +100,7 @@
     End Sub
 
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
-        lvURLs.Items.Add("")
+        lvURLs.Items.Add(String.Empty)
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -118,12 +121,25 @@
     End Sub
 
     Private Sub tmrCheck_Tick(sender As Object, e As EventArgs) Handles tmrCheck.Tick
-        If txtName.Text.Trim = "" Then
+        If txtName.Text.Trim() = String.Empty Then
             epError.SetError(txtName, "Enter a name")
         Else
-            epError.SetError(txtName, "")
+            epError.SetError(txtName, String.Empty)
         End If
-        btnOk.Enabled = Not txtName.Text.Trim = ""
+        btnOk.Enabled = Not txtName.Text.Trim() = String.Empty
     End Sub
 
+    Private Sub pbIcon_DoubleClick(sender As Object, e As EventArgs) Handles pbIcon.DoubleClick
+        Dim lURLs As New List(Of String)
+        For Each item As ListViewItem In lvURLs.Items
+            lURLs.Add(item.Text)
+        Next
+        frmIconChooser.Show(lURLs.ToArray())
+    End Sub
+
+    Private Sub pbIcon_Paint(sender As Object, e As PaintEventArgs) Handles pbIcon.Paint
+        If pbIcon.Image Is Nothing Then
+            e.Graphics.DrawString("No Icon", New Font("Microsoft Sans Serif", 6), Brushes.Black, New Point(0, 0))
+        End If
+    End Sub
 End Class

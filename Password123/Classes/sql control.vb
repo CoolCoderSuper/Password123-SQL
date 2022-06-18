@@ -42,7 +42,7 @@ Public Class sql_control
     End Sub
     Public Function hasexception(Optional report As Boolean = False) As Boolean
         If String.IsNullOrEmpty(exception) Then Return False
-        If report = True Then MsgBox(exception, MsgBoxStyle.Critical, "DATABASE ERROR")
+        If report = True Then MsgBox(exception, MsgBoxStyle.Critical, "Database Error")
         Return True
     End Function
 End Class

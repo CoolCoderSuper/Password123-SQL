@@ -41,6 +41,9 @@
     Private Sub LoadCategories()
         Dim qCategroies As String = "select * from categories"
         conn.executequery(qCategroies)
+        For i As Integer = 0 To conn.dbdt.Rows.Count - 1
+            conn.dbdt.Rows(i)("Name") = DecryptTripleDES(conn.dbdt.Rows(i)("Name"), Key)
+        Next
         Dim drAll As DataRow = conn.dbdt.NewRow
         drAll("Id") = 0
         drAll("Name") = "All"
@@ -69,7 +72,7 @@
     Private Sub btnDeleteEntry_Click(sender As Object, e As EventArgs) Handles btnDeleteEntry.Click
         Try
             Dim intId As Integer = Integer.Parse(dgvEntries.SelectedRows(0).Cells(0).Value.ToString)
-            Dim q As String = "delete from entries where Id='" & intId & "';"
+            Dim q As String = "delete from entries where Id='" & intId & "';delete from urls where entryid='" & intId & "';"
             conn.executequery(q)
             conn.hasexception(True)
         Catch ex As Exception
@@ -84,7 +87,7 @@
             Dim q As String = "select * from entries where Id='" & intId & "';"
             conn.executequery(q)
             If conn.dbdt.Rows.Count = 0 Then
-                MsgBox("Failed to get entry!", MsgBoxStyle.Critical, "DATABASE ERROR")
+                MsgBox("Failed to get entry!", MsgBoxStyle.Critical, "Database Error")
             End If
             Clipboard.SetText(conn.dbdt.Rows(0)("Username"))
             conn.hasexception(True)
@@ -99,7 +102,7 @@
             Dim q As String = "select * from entries where Id='" & intId & "';"
             conn.executequery(q)
             If conn.dbdt.Rows.Count = 0 Then
-                MsgBox("Failed to get entry!", MsgBoxStyle.Critical, "DATABASE ERROR")
+                MsgBox("Failed to get entry!", MsgBoxStyle.Critical, "Database Error")
             End If
             Clipboard.SetText(DecryptTripleDES(conn.dbdt.Rows(0)("Password"), Key))
             conn.hasexception(True)
@@ -128,6 +131,11 @@
         If conn.hasexception(True) Then
             Exit Sub
         End If
+        For i As Integer = 0 To conn.dbdt.Rows.Count - 1
+            conn.dbdt.Rows(i)("Name") = DecryptTripleDES(conn.dbdt.Rows(i)("Name"), Key)
+            conn.dbdt.Rows(i)("Username") = DecryptTripleDES(conn.dbdt.Rows(i)("Username"), Key)
+            conn.dbdt.Rows(i)("Notes") = DecryptTripleDES(conn.dbdt.Rows(i)("Notes"), Key)
+        Next
         dgvEntries.DataSource = conn.dbdt
         dgvEntries.Columns(0).Visible = False
         dgvEntries.Columns(3).Visible = False

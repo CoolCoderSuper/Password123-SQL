@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmEntry
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmEntry
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -43,15 +43,15 @@ Partial Class frmEntry
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.cbxCategory = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.pbIcon = New System.Windows.Forms.PictureBox()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbIcon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(46, 61)
+        Me.Label1.Location = New System.Drawing.Point(46, 53)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(41, 13)
         Me.Label1.TabIndex = 0
@@ -59,14 +59,14 @@ Partial Class frmEntry
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(147, 58)
+        Me.txtName.Location = New System.Drawing.Point(147, 50)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(233, 20)
         Me.txtName.TabIndex = 1
         '
         'txtUsername
         '
-        Me.txtUsername.Location = New System.Drawing.Point(147, 84)
+        Me.txtUsername.Location = New System.Drawing.Point(147, 76)
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.Size = New System.Drawing.Size(233, 20)
         Me.txtUsername.TabIndex = 3
@@ -74,7 +74,7 @@ Partial Class frmEntry
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(46, 87)
+        Me.Label2.Location = New System.Drawing.Point(46, 79)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(61, 13)
         Me.Label2.TabIndex = 2
@@ -82,7 +82,7 @@ Partial Class frmEntry
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(147, 110)
+        Me.txtPassword.Location = New System.Drawing.Point(147, 102)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(212, 20)
         Me.txtPassword.TabIndex = 5
@@ -91,7 +91,7 @@ Partial Class frmEntry
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(46, 113)
+        Me.Label3.Location = New System.Drawing.Point(46, 105)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(59, 13)
         Me.Label3.TabIndex = 4
@@ -109,7 +109,7 @@ Partial Class frmEntry
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(46, 162)
+        Me.Label4.Location = New System.Drawing.Point(46, 154)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 13)
         Me.Label4.TabIndex = 7
@@ -117,7 +117,7 @@ Partial Class frmEntry
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(147, 159)
+        Me.txtNotes.Location = New System.Drawing.Point(147, 151)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both
@@ -128,7 +128,7 @@ Partial Class frmEntry
         '
         Me.lvURLs.HideSelection = False
         Me.lvURLs.LabelEdit = True
-        Me.lvURLs.Location = New System.Drawing.Point(147, 319)
+        Me.lvURLs.Location = New System.Drawing.Point(147, 311)
         Me.lvURLs.MultiSelect = False
         Me.lvURLs.Name = "lvURLs"
         Me.lvURLs.Size = New System.Drawing.Size(233, 99)
@@ -139,7 +139,7 @@ Partial Class frmEntry
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(46, 290)
+        Me.Label5.Location = New System.Drawing.Point(46, 282)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(40, 13)
         Me.Label5.TabIndex = 10
@@ -148,7 +148,7 @@ Partial Class frmEntry
         'chFavourite
         '
         Me.chFavourite.AutoSize = True
-        Me.chFavourite.Location = New System.Drawing.Point(310, 136)
+        Me.chFavourite.Location = New System.Drawing.Point(310, 128)
         Me.chFavourite.Name = "chFavourite"
         Me.chFavourite.Size = New System.Drawing.Size(70, 17)
         Me.chFavourite.TabIndex = 11
@@ -157,7 +157,7 @@ Partial Class frmEntry
         '
         'btnOk
         '
-        Me.btnOk.Location = New System.Drawing.Point(224, 451)
+        Me.btnOk.Location = New System.Drawing.Point(224, 443)
         Me.btnOk.Name = "btnOk"
         Me.btnOk.Size = New System.Drawing.Size(75, 23)
         Me.btnOk.TabIndex = 12
@@ -166,7 +166,7 @@ Partial Class frmEntry
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(305, 451)
+        Me.btnCancel.Location = New System.Drawing.Point(305, 443)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 13
@@ -184,7 +184,7 @@ Partial Class frmEntry
         '
         'btnNew
         '
-        Me.btnNew.Location = New System.Drawing.Point(147, 290)
+        Me.btnNew.Location = New System.Drawing.Point(147, 282)
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(75, 23)
         Me.btnNew.TabIndex = 14
@@ -193,7 +193,7 @@ Partial Class frmEntry
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(305, 290)
+        Me.btnDelete.Location = New System.Drawing.Point(305, 282)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(75, 23)
         Me.btnDelete.TabIndex = 15
@@ -204,7 +204,7 @@ Partial Class frmEntry
         '
         Me.cbxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxCategory.FormattingEnabled = True
-        Me.cbxCategory.Location = New System.Drawing.Point(147, 424)
+        Me.cbxCategory.Location = New System.Drawing.Point(147, 416)
         Me.cbxCategory.Name = "cbxCategory"
         Me.cbxCategory.Size = New System.Drawing.Size(233, 21)
         Me.cbxCategory.TabIndex = 16
@@ -212,26 +212,27 @@ Partial Class frmEntry
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(46, 427)
+        Me.Label6.Location = New System.Drawing.Point(46, 419)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(55, 13)
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "Category: "
         '
-        'PictureBox1
+        'pbIcon
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(335, 7)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(45, 45)
-        Me.PictureBox1.TabIndex = 18
-        Me.PictureBox1.TabStop = False
+        Me.pbIcon.Location = New System.Drawing.Point(348, 12)
+        Me.pbIcon.Name = "pbIcon"
+        Me.pbIcon.Size = New System.Drawing.Size(32, 32)
+        Me.pbIcon.TabIndex = 18
+        Me.pbIcon.TabStop = False
         '
         'frmEntry
         '
+        Me.AcceptButton = Me.btnOk
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(392, 483)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.ClientSize = New System.Drawing.Size(392, 475)
+        Me.Controls.Add(Me.pbIcon)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.cbxCategory)
         Me.Controls.Add(Me.btnDelete)
@@ -258,7 +259,7 @@ Partial Class frmEntry
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbIcon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -284,5 +285,5 @@ Partial Class frmEntry
     Friend WithEvents btnNew As Button
     Friend WithEvents cbxCategory As ComboBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents pbIcon As PictureBox
 End Class

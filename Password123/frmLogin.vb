@@ -25,7 +25,7 @@
                 If Not strSample = "" Then
                     Dim strValue As String = DecryptTripleDES(strSample, strPass)
                     If Not strValue = GetSampleString() Then
-                        MsgBox("Failed to unlock:" & vbCrLf & "Either database is corrupt or enterd key is wrong!", MsgBoxStyle.Critical, "ENCRYPTION ERROR")
+                        MsgBox("Failed to unlock:" & vbCrLf & "Either database is corrupt or enterd key is wrong!", MsgBoxStyle.Critical, "Encryption Error")
                     Else
                         Key = strPass
                         frmMain.Show()
@@ -33,10 +33,10 @@
                     End If
                 End If
             Catch ex As Exception
-                MsgBox("Failed to unlock:" & vbCrLf & "Either database is corrupt or enterd key is wrong!", MsgBoxStyle.Critical, "ENCRYPTION ERROR")
+                MsgBox("Failed to unlock:" & vbCrLf & "Either database is corrupt or enterd key is wrong!", MsgBoxStyle.Critical, "Encryption Error")
             End Try
         Else
-            MsgBox("Failed to generate key reason:" & vbCrLf & "Keys in database corrupt!", MsgBoxStyle.Critical, "ENCRYPTION ERROR")
+            MsgBox("Failed to generate key reason:" & vbCrLf & "Keys in database corrupt!", MsgBoxStyle.Critical, "Encryption Error")
         End If
     End Sub
 

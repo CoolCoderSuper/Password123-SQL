@@ -18,16 +18,16 @@
             Exit Sub
         End If
         If conn.dbdt.Rows.Count = 0 Then
-            MsgBox("Failed to get item.", MsgBoxStyle.Critical, "DATABASE ERROR")
+            MsgBox("Failed to get item.", MsgBoxStyle.Critical, "Database Error")
             Exit Sub
         End If
         Dim dr As DataRow = conn.dbdt.Rows(0)
-        txtName.Text = dr("Name")
+        txtName.Text = DecryptTripleDES(dr("Name"), Key)
         ShowDialog()
     End Sub
 
     Private Sub Save()
-        conn.addparam("@name", txtName.Text)
+        conn.addparam("@name", EncryptTripleDES(txtName.Text, Key))
         If bEdit Then
             Dim q As String = "update categories set Name=@name where Id='" & intId & "';"
             conn.executequery(q)
