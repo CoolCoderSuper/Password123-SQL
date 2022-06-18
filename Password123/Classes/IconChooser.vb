@@ -22,4 +22,8 @@ Public Class IconChooser
         Return lImages.ToArray()
     End Function
 
+    Private Function GetURL(url As String)
+
+    End Function
+
 End Class
